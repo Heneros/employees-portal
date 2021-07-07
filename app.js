@@ -77,7 +77,46 @@ tableBody.addEventListener('click', function(e){
       
     }
     if(targetElement.classList.contains('update')){
-        console.log('You clicked update');
+        let selectedId = targetElement.parentElement.parentElement.firstElementChild.innerHTML;
+        let http = new BrainHttp();
+        let url = `${serverURL}/employees`;
+        http.get(url, (err, employees) => {
+           if (err) throw err;
+           let selectedEmployee = employees.find((employee) =>{
+               return employee.id === selectedId.trim();
+           });
+         populateUpdateModal(selectedEmployee);
+        });
     }
+})
 
+let populateUpdateModal = (selectedEmployee) =>{
+    document.querySelector('#update-emp-id').value = selectedEmployee.id;
+    document.querySelector('#update-first-name').value = selectedEmployee.first_name;
+    document.querySelector('#update-last-name').value = selectedEmployee.last_name;
+    document.querySelector('#update-email').value = selectedEmployee.email;
+    document.querySelector('#update-gender').value = selectedEmployee.gender;
+    document.querySelector('#update-ip-address').value = selectedEmployee.ip_address;
+    $('#update-employee-form').modal('show');
+}
+
+
+let updateEmployeeForm = document.querySelector('#update-employee-form');
+updateEmployeeForm.addEventListener('submit', function(e){
+    let employeeID = document.querySelector('#update-emp-id').value.trim();
+    e.preventDefault();
+    $('#update-employee-form').modal('hide');
+    let employee = {
+        first_name: document.querySelector('#update-first-name').value,
+        last_name: document.querySelector('#update-last-name').value,
+        email: document.querySelector('#update-email').value,
+        gender: document.querySelector('#update-gender').value,
+        ip_address: document.querySelector('#update-ip-address').value,
+    };
+    let url = `${serverURL}/employees/${employeeID}`;
+    let http = new BrainHttp();
+    http.put(url, employee, (data) => {
+        console.log(data);
+        fetchAllEmployees();
+    });
 })

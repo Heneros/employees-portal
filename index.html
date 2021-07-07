@@ -20,6 +20,46 @@
             </div>
         </div>
     </div>
+    <div class="modal animated slideInRight " id="update-employee-form">
+        <div class="modal-dialog ">
+            <div data-mdb-animation="slide-left"  class="modal-content   ">
+                <div class="modal-header bg-secondary text-white">
+                    <h3>Update Employee</h3>
+                    <button class="close" data-dismiss="modal">
+                        <i class="fa fa-times-circle"></i>
+                    </button>
+                </div>
+                <div class="modal-body bg-light">
+                    <form id="update-employee-form">
+                            <input hidden required id="update-emp-id" type="text" class="form-control mt-3" placeholder="Employee ID">
+                        <div class="form-group">
+                            <input required id="update-first-name" type="text" class="form-control mt-3" placeholder="First Name">
+                        </div>
+                        <div class="form-group">
+                            <input required id="update-last-name" type="text" class="form-control mt-3" placeholder="Last Name">
+                        </div>
+                        <div class="form-group">
+                            <input required id="update-email" type="email" class="form-control  mt-3" placeholder="Email">
+                        </div>
+                        <div class="form-group ">
+                             <select required id="update-gender" class="form-control mt-3">
+                                 <option value="">Select Gender</option>
+                                 <option value="Male">Male</option>
+                                 <option value="Female">Female</option>
+                             </select>
+                        </div>
+                        <div class="form-group">
+                            <input required id="update-ip-address" type="text" class="form-control mt-3
+                            mb-3" placeholder="IP Address">
+                        </div>
+                        <div>
+                            <input type="submit" value="Update Employee" class="btn btn-secondary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal animated slideInLeft " id="add-employee-form">
         <div class="modal-dialog ">
             <div data-mdb-animation="slide-left"  class="modal-content   ">
